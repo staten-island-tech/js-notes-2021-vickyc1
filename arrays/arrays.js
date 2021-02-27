@@ -50,25 +50,6 @@ console.log(newBikes);
 const newBikes2 = [...newBikes.slice(0, 3), ...newBikes.slice(4)]; //REMOVE panasonic from the array
 console.log(newBikes2);
 
-const comments = [
-  { text: "Cool Beans", id: 123 },
-  { text: "Love this", id: 133 },
-  { text: "Cool mangos", id: 233 },
-  { text: "good bikes", id: 333 },
-  { text: "so good", id: 433 },
-];
-
-function deleteComment(id, comments) {
-  //first find the index of the item in the array
-  const commentIndex = comments.findIndex((comment) => comment.id === id);
-  //make a new arrayw without that tiem in it
-  return [
-    ...comments.slice(0, commentIndex),
-    ...comments.slice(commentIndex + 1),
-  ];
-  //return our new array
-} //console type in deleteComment (233, comments) for example
-
 const kaitIndex = name.findIndex((name) => name === "kait");
 console.log(kaitIndex); //finds the index of kait
 console.log(name[kaitIndex]); //checks it is true
@@ -89,6 +70,25 @@ const newNamesWithoutKaitAnother = [
   name.slice(kaitIndex + 1),
 ].flat();
 console.log(newNamesWithoutKaitAnother);
+
+const comments = [
+  { text: "Cool Beans", id: 123 },
+  { text: "Love this", id: 133 },
+  { text: "Cool mangos", id: 233 },
+  { text: "good bikes", id: 333 },
+  { text: "so good", id: 433 },
+];
+
+function deleteComment(id, comments) {
+  //first find the index of the item in the array
+  const commentIndex = comments.findIndex((comment) => comment.id === id);
+  //make a new arrayw without that tiem in it
+  return [
+    ...comments.slice(0, commentIndex),
+    ...comments.slice(commentIndex + 1),
+  ];
+  //return our new array
+} //console type in deleteComment (233, comments) for example
 
 //---
 
