@@ -8,7 +8,7 @@ document;
 document.getElementById("page-banner"); //grabs an element, the id and everything in that id, from the html document
 
 var banner = document.getElementById("page-banner"); //stores the info in a variable
-var bookList = docment.getElementById("book-list");
+var bookLists = document.getElementById("book-list");
 
 //querying for several elements, ex: class name which can be the same but from diff divs
 var titles = document.getElementsByClassName("title");
@@ -16,7 +16,7 @@ var titles = document.getElementsByClassName("title");
 
 //GETELEMENTSBYTAGNAME - return a collection of elements with the same tag
 var lis = document.getElementsByTagName("li");
-li[2];
+lis[2];
 
 //set i=0 and as long as i is less than the length of titles (in this case is 2), i will plus 1 and run this console.log function each time
 for (i = 0; i < titles.length; i++) {
