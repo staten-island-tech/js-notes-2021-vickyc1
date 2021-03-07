@@ -1,9 +1,10 @@
-//Notes
+//Notes - filter, map, sort, reduce
 
 //Array prototype.filter
 //FILTER- pass it a function, which will loop over every single item in the array, and gives us the inventor. Will take the inventor, loop over it, and for each inventor, will decide if will keep it or not
 //ex: filtering the list of inventors for those born in the 1500's
 const fifteen = inventors.filter(function (inventor) {
+  //inventor is the name of the function or const with the arrays
   if (inventor.year >= 1500 && inventor.year < 1600) {
     return true; //keep it!
   }
@@ -62,64 +63,84 @@ const de = links
 
 //sort people alphabetically by last name
 const alpha = people.sort((lastOne, nextOne) => {
-    const [aLast, aFirst]= lastOne.split(', ');
-    const [bLast, bFirst]= nextOne.split(', ');
+  const [aLast, aFirst] = lastOne.split(", ");
+  const [bLast, bFirst] = nextOne.split(", ");
   return aLast > bLast ? 1 : -1;
 });
 
 //sum up the instances of each of these
-const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck'];
-const transportation = data.reduce(function(obj, item) {
-    if (!obj[item]) {
-        obj[item] = 0;
-    }
-    obj[item]++;
-    return obj;
+const data = [
+  "car",
+  "car",
+  "truck",
+  "truck",
+  "bike",
+  "walk",
+  "car",
+  "van",
+  "bike",
+  "walk",
+  "car",
+  "van",
+  "car",
+  "truck",
+];
+const transportation = data.reduce(function (obj, item) {
+  if (!obj[item]) {
+    obj[item] = 0;
+  }
+  obj[item]++;
+  return obj;
 }, {});
 
 //Array.prototype.some()
 //SOME- checks if at least one thing in your array meets what you are lookin for.
 //ex: Is at least one person 19?
-const isAdult = people.some(function(person) {
-    const currentYear = (new Date()).getFullYear(); 
-    if(currentYear = person.year >= 19) {
+const isAdult = people.some(function (person) {
+  const currentYear = new Date().getFullYear();
+  if ((currentYear = person.year >= 19)) {
     return true;
-    }
+  }
 });
 console.log(isAdult);
-console.log({isAdult}); //show the name of the variable and the value
+console.log({ isAdult }); //show the name of the variable and the value
 
-const isAdult = people.some(person => {
-    const currentYear = (new Date()).getFullYear(); 
-    return currentYear = person.year >= 19;
+const isAdult = people.some((person) => {
+  const currentYear = new Date().getFullYear();
+  return (currentYear = person.year >= 19);
 });
-const isAdult = people.some(person => ((new Date()).getFullYear()) - person.year >= 19 );
+const isAdult = people.some(
+  (person) => new Date().getFullYear() - person.year >= 19
+);
 
 //Array.prototype.every()
-//EVERY- checks everyone if it meets what you are looking for 
-//ex: is everyone 19? 
-const allAdults = people.every(person => ((new Date()).getFullYear()) - person.year >= 19 );
-console.log({allAdults});
+//EVERY- checks everyone if it meets what you are looking for
+//ex: is everyone 19?
+const allAdults = people.every(
+  (person) => new Date().getFullYear() - person.year >= 19
+);
+console.log({ allAdults });
 
 //Array.prototype.find()
 //FIND is like filter but instead of returning the subset of the array, will reutrn the first item that it finds.
 //ex: find comment with the ID of 823423
-const comment = comments.find(function(comment) {
-    if(comment.id === '823423') {
-        return true;
-    }
+const comment = comments.find(function (comment) {
+  if (comment.id === "823423") {
+    return true;
+  }
 });
 
-const comment = comments.find(comment => comment.id === '823423'); //shortened version using arrowheads
+const comment = comments.find((comment) => comment.id === "823423"); //shortened version using arrowheads
 console.log(comment);
 
 //Array.prototype.findIndex()
 //FIND- find where smth is inside of the array
 //ex: find the comment with this ID. delete the comment with the ID of 823423
-const index = comments.findIndex(comment => comment.id === 823423);
+const index = comments.findIndex((comment) => comment.id === 823423);
 console.log(index);
 // comments.splice(index, 1);
-const newComments = [ //builds a new array of comments
+const newComments = [
+  //builds a new array of comments
   ...comments.slice(0, index),
-  ...comments.slice(index + 1)
+  ...comments.slice(index + 1),
 ];
