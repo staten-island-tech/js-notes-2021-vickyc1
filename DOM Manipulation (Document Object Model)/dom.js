@@ -47,9 +47,11 @@ Array.from(books).forEach(function (book) {
   console.log(book.textContent);
 });
 
+/*
 Array.from(books).forEach(function (book) {
   book.textContent = "test"; //overwritten the previous content to test
 });
+*/
 
 Array.from(books).forEach(function (book) {
   book.textContent += " (book title)"; //appends, so adds in book title to the textContent. NEED THE +=
@@ -58,5 +60,43 @@ Array.from(books).forEach(function (book) {
 //UPDATE THE HTML
 const bookList = document.querySelector("#book-list");
 console.log(bookList.innerHTML); //every html in book-list is logged to the console
-bookList.innerHTML = "<h2>Books and more books...</h2>"; //overwritten entire html there with this
+//bookList.innerHTML = "<h2>Books and more books...</h2>"; //overwritten entire html there with this
 bookList.innerHTML += "<p>This is how you add HTML</p>"; //add on this
+
+//Tranverse upward through the DOM. from children to the parent element
+console.log("the parent node:", bookList.parentNode); //writes it out
+console.log("the parent node:", bookList.parentElement); //outputs it to console as well
+
+console.log("the parent node:", bookList.parentElement.parentElement); //finds parent element of the book list, then find parent element of that.
+
+//Tranverse downward through the DOM. from parent to the children element
+console.log(bookList.childNodes); //gets all those text nodes
+console.log(bookList.children); //gets element children
+
+//Transversing from sibling to sibling
+//const bookList = document.querySelector("#book-list"); already written above
+console.log("book-list next sibling is", bookList.nextSibling); //gets next node bc line break
+console.log("book-list next sibling is", bookList.nextElementSibling); //get next element sibling
+
+console.log("book-list previous sibling is", bookList.previousSibling);
+console.log("book-list previous sibling is", bookList.previousElementSibling);
+
+bookList.previousElementSibling.querySelector("p").innerHTML += "<br />Hello"; //search in the header for a p tag and add a (line)break then text
+//"grabs a reference to the book list, then use the previous element sibling property to get a header, then query selector to query everything in the header and find the p, then changing the html"
+
+//add event listener to h2 with click
+var h2 = document.querySelector("#book-list h2");
+h2.addEventListener("click", function (e) {
+  console.log(e.target);
+  console.log(e);
+});
+
+//delete the li if click on delete btn
+var btns = document.querySelectorAll("#book-list .delete");
+Array.from(btns).forEach(function (btn) {
+  btn.addEventListener("click", function (e) {
+    const li = e.target.parentElement; //grabs li
+    li.parentNode.removeChild(li);
+  });
+});
+
