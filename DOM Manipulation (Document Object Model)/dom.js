@@ -100,3 +100,51 @@ Array.from(btns).forEach(function (btn) {
   });
 });
 
+//prevent from going to another page
+const link = document.querySelector("#page-banner a");
+link.addEventListener("click", function (e) {
+  e.preventDefault();
+  console.log("navigation to", e.target.textContent, "was prevented");
+});
+
+//Event Bubbling
+//event listener added to smth will fire, will fire to the parent per say if parent also has a eventlistener there, cont...
+
+//better way to delete when click on button. still can delete even if add one more book bc are still clicking on ul tag, which the book added is inside of
+const list = document.querySelector("#book-list ul");
+list.addEventListener("click", function (e) {
+  if (e.target.className == "delete");
+  const li = e.target.parentElement; //gets the parent element of the ul
+  li.parentNode.removeChild(li); //gets the parent above this one abd remove
+});
+
+//Interacting with Forms
+//add book-list
+const addForm = document.forms["add-book"]; //id of the form
+addForm.addEventListener("submit", function (e) {
+  e.preventDefault(); //prevents default behavior in forms that when click, refreshes the page
+  const value = addForm.querySelector('input[type="text"]').value;
+
+  //create elements
+  const li = document.createElement("li");
+  const bookName = document.createElement("span");
+  const deleteBtn = document.createElement("span");
+
+  //add content
+  deleteBtn.textContent = "delete";
+  bookName.textContent = value;
+
+  //add class name of "name" and "delete" into html
+  bookName.classList.add("name");
+  deleteBtn.classList.add("delete");
+
+  //append to DOM. order matters
+  li.appendChild(bookName);
+  li.appendChild(deleteBtn);
+  list.appendChild(li); //appended li to the list
+});
+
+//add style in console
+var li = document.querySelector("li:last-child");
+li.style.color = "red";
+li.style.marginTop = "60px";
